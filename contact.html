@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Demandez un devis à Rescue Forma — formation prévention des risques, secourisme, incendie, sûreté. Réponse sous 48 h ouvrées. contact@rescueforma.fr">
+  <title>Contact & devis — Rescue Forma</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="contact">
+
+<header></header>
+
+<section class="detail-head">
+  <div class="wrap">
+    <div class="breadcrumb"><a href="index.html">Accueil</a> / Contact &amp; devis</div>
+    <h1>Demander un devis</h1>
+    <p class="d-sub">Décrivez votre besoin : nous répondons sous 48 h ouvrées avec une proposition adaptée à votre effectif, votre secteur et vos contraintes de planning.</p>
+  </div>
+</section>
+
+<div class="wrap contact-grid">
+  <div>
+    <div class="contact-card">
+      <h4>Email</h4>
+      <p><a href="mailto:contact@rescueforma.fr">contact@rescueforma.fr</a></p>
+    </div>
+    <div class="contact-card">
+      <h4>Zone d'intervention</h4>
+      <p>Région PACA — formations intra sur votre site.<br>Bouches-du-Rhône · Var · Vaucluse · Alpes-Maritimes · Alpes-de-Haute-Provence · Hautes-Alpes</p>
+    </div>
+    <div class="contact-card">
+      <h4>Organisme</h4>
+      <p>Rescue Forma SAS — en cours d'immatriculation<br>NDA en cours · Qualiopi et habilitation INRS visées</p>
+    </div>
+    <div class="contact-card">
+      <h4>Accessibilité handicap</h4>
+      <p>Un besoin d'adaptation ? Signalez-le dans votre message : notre référent handicap étudiera les aménagements possibles.</p>
+    </div>
+  </div>
+
+  <div>
+    <form id="devisForm" class="form-grid">
+      <div class="fg">
+        <label for="nom">Prénom et nom</label>
+        <input type="text" id="nom" required placeholder="Jean Dupont">
+      </div>
+      <div class="fg">
+        <label for="societe">Entreprise / structure</label>
+        <input type="text" id="societe" required placeholder="Nom de la structure">
+      </div>
+      <div class="fg">
+        <label for="email">Email</label>
+        <input type="email" id="email" required placeholder="vous@entreprise.fr">
+      </div>
+      <div class="fg">
+        <label for="tel">Téléphone</label>
+        <input type="tel" id="tel" placeholder="06 00 00 00 00">
+      </div>
+      <div class="fg full">
+        <label for="formation">Formation souhaitée</label>
+        <select id="formation"></select>
+      </div>
+      <div class="fg">
+        <label for="effectif">Nombre de stagiaires</label>
+        <input type="number" id="effectif" min="1" placeholder="Ex. 10">
+      </div>
+      <div class="fg">
+        <label for="dept">Département</label>
+        <select id="dept">
+          <option value="">Sélectionner</option>
+          <option>13 — Bouches-du-Rhône</option>
+          <option>83 — Var</option>
+          <option>84 — Vaucluse</option>
+          <option>06 — Alpes-Maritimes</option>
+          <option>04 — Alpes-de-Haute-Provence</option>
+          <option>05 — Hautes-Alpes</option>
+          <option>Autre</option>
+        </select>
+      </div>
+      <div class="fg full">
+        <label for="message">Votre besoin</label>
+        <textarea id="message" placeholder="Contexte, contraintes de dates, risques particuliers de votre activité…"></textarea>
+      </div>
+      <div class="fg full">
+        <button type="submit" class="btn btn-solid" style="width:100%;">Envoyer la demande de devis</button>
+        <p style="font-size:12.5px;color:var(--ink-muted);margin-top:10px;">L'envoi ouvre votre messagerie avec la demande pré-remplie à destination de contact@rescueforma.fr. Vos données ne sont utilisées que pour le traitement de votre demande.</p>
+      </div>
+    </form>
+  </div>
+</div>
+
+<footer></footer>
+
+<script src="js/formations-data.js"></script>
+<script src="js/common.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  /* Remplissage du select formations depuis la base */
+  const sel = document.getElementById('formation');
+  sel.innerHTML = '<option value="">Sélectionner une formation</option>';
+  Object.entries(THEMES).forEach(([key, t]) => {
+    const group = document.createElement('optgroup');
+    group.label = t.nom;
+    FORMATIONS.filter(f => f.theme === key).forEach(f => {
+      const o = document.createElement('option');
+      o.value = f.titre;
+      o.textContent = f.titre;
+      group.appendChild(o);
+    });
+    sel.appendChild(group);
+  });
+  const extra = document.createElement('option');
+  extra.value = 'Formation sur mesure';
+  extra.textContent = 'Formation sur mesure / autre besoin';
+  sel.appendChild(extra);
+
+  /* Pré-sélection depuis formation.html?formation=… */
+  const pre = new URLSearchParams(location.search).get('formation');
+  if (pre) sel.value = pre;
+
+  /* Envoi par mailto vers contact@rescueforma.fr */
+  document.getElementById('devisForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const v = id => document.getElementById(id).value.trim();
+    const sujet = 'Demande de devis — ' + (v('formation') || 'formation');
+    const corps =
+`Demande de devis via rescueforma.fr
+
+Nom : ${v('nom')}
+Structure : ${v('societe')}
+Email : ${v('email')}
+Téléphone : ${v('tel') || '—'}
+
+Formation souhaitée : ${v('formation') || '—'}
+Nombre de stagiaires : ${v('effectif') || '—'}
+Département : ${v('dept') || '—'}
+
+Besoin :
+${v('message') || '—'}`;
+    location.href = 'mailto:contact@rescueforma.fr'
+      + '?subject=' + encodeURIComponent(sujet)
+      + '&body=' + encodeURIComponent(corps);
+  });
+});
+</script>
+</body>
+</html>

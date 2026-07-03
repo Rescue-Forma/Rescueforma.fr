@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Rescue Forma — Spécialités sectorielles : établissements de santé et médico-social (EHPAD, cliniques), restauration et hôtellerie, entreprises et collectivités.">
+  <title>Secteurs d'expertise — Rescue Forma</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .sect-block { padding: 64px 0; border-bottom: 1px solid var(--line); }
+    .sect-block:last-of-type { border-bottom: none; }
+    .sect-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 56px; align-items: start; }
+    .sect-intro h2 { font-family: var(--serif); font-size: clamp(24px, 3vw, 32px); font-weight: 700; margin-bottom: 16px; }
+    .sect-intro p { font-size: 15.5px; color: var(--ink-soft); margin-bottom: 14px; }
+    .sect-points { margin-top: 22px; }
+    .sect-points li {
+      padding: 8px 0 8px 20px; position: relative;
+      font-size: 14.5px; color: var(--ink-soft);
+    }
+    .sect-points li::before {
+      content: ''; position: absolute; left: 0; top: 18px;
+      width: 8px; height: 1.5px; background: var(--accent);
+    }
+    .sect-points li strong { color: var(--ink); font-weight: 600; }
+    @media (max-width: 920px) { .sect-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body data-page="secteurs">
+
+<header></header>
+
+<section class="detail-head">
+  <div class="wrap">
+    <div class="breadcrumb"><a href="index.html">Accueil</a> / Secteurs d'expertise</div>
+    <h1>Des spécialités construites secteur par secteur</h1>
+    <p class="d-sub">Les risques d'un EHPAD ne sont pas ceux d'une cuisine, ni ceux d'un site tertiaire. Rescue Forma a structuré son catalogue autour de trois environnements que ses formateurs connaissent de l'intérieur.</p>
+  </div>
+</section>
+
+<!-- ═══ SANTÉ ═══ -->
+<div class="sect-block" id="sante">
+  <div class="wrap sect-grid">
+    <div class="sect-intro">
+      <div class="overline">Spécialité 01</div>
+      <h2>Établissements de santé &amp; médico-social</h2>
+      <p>EHPAD, cliniques, hôpitaux, foyers, SSIAD : des résidents et patients non autonomes, des équipes de nuit en effectif réduit, une réglementation incendie spécifique (ERP types U et J).</p>
+      <p>Nos programmes intègrent ces contraintes dès leur conception : on n'évacue pas un service de gériatrie comme un plateau de bureaux.</p>
+      <ul class="sect-points">
+        <li><strong>Transfert horizontal</strong> et évacuation différée en exercice réel</li>
+        <li><strong>Manutention des patients</strong> avec les aides techniques de l'établissement</li>
+        <li><strong>Agressivité et troubles du comportement</strong> — désamorçage en contexte de soin</li>
+        <li><strong>Urgences gériatriques</strong> — les premières minutes avant le SAMU</li>
+        <li>Formations adaptées aux <strong>équipes de nuit</strong></li>
+      </ul>
+    </div>
+    <div>
+      <div class="theme-section-head" style="margin-top:8px;">
+        <h2 style="font-size:19px;">Formations dédiées au secteur</h2>
+      </div>
+      <div class="formations-list" style="grid-template-columns:1fr;" id="list-sante"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ RESTAURATION ═══ -->
+<div class="sect-block" id="resto" style="background:var(--bg-alt);">
+  <div class="wrap sect-grid">
+    <div class="sect-intro">
+      <div class="overline">Spécialité 02</div>
+      <h2>Restauration &amp; hôtellerie</h2>
+      <p>Restaurants, restauration rapide, traiteurs, restauration collective : un cadre réglementaire strict — au moins une personne formée à l'hygiène alimentaire par établissement — et des risques quotidiens bien identifiés.</p>
+      <p>Feux d'huile, brûlures, coupures, étouffement d'un client en salle : nos exercices reproduisent les accidents réels du secteur.</p>
+      <ul class="sect-points">
+        <li><strong>Hygiène alimentaire</strong> — la formation obligatoire du décret 2011-731</li>
+        <li><strong>HACCP</strong> appliqué à vos propres diagrammes de fabrication</li>
+        <li><strong>Feux d'huile et friteuses</strong> — extinction sur feu réel</li>
+        <li><strong>Premiers secours en cuisine</strong> — brûlures, coupures, urgences en salle</li>
+      </ul>
+    </div>
+    <div>
+      <div class="theme-section-head" style="margin-top:8px;">
+        <h2 style="font-size:19px;">Formations dédiées au secteur</h2>
+      </div>
+      <div class="formations-list" style="grid-template-columns:1fr;" id="list-resto"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ENTREPRISES ═══ -->
+<div class="sect-block" id="entreprises">
+  <div class="wrap sect-grid">
+    <div class="sect-intro">
+      <div class="overline">Spécialité 03</div>
+      <h2>Entreprises &amp; collectivités</h2>
+      <p>Du siège tertiaire au site industriel, de la mairie à l'association : l'ensemble des obligations de formation sécurité de l'employeur, couvert par un interlocuteur unique.</p>
+      <p>SST, équipiers incendie, exercices d'évacuation, habilitations électriques, DUERP : nous construisons votre plan de formation sécurité annuel et assurons son suivi.</p>
+      <ul class="sect-points">
+        <li><strong>SST et MAC SST</strong> selon le référentiel INRS</li>
+        <li><strong>Équipiers incendie</strong> EPI/ESI et exercices semestriels d'évacuation</li>
+        <li><strong>Habilitations électriques</strong> H0-B0, BE Manœuvre, BS</li>
+        <li><strong>Prévention</strong> — TMS, RPS, addictions, risque routier, DUERP</li>
+        <li><strong>Sûreté</strong> — conflits, agressions, menace terroriste, audits de site</li>
+      </ul>
+    </div>
+    <div>
+      <div class="theme-section-head" style="margin-top:8px;">
+        <h2 style="font-size:19px;">Une sélection du catalogue</h2>
+      </div>
+      <div class="formations-list" style="grid-template-columns:1fr;" id="list-entreprises"></div>
+      <p style="margin-top:18px;"><a href="formations.html" class="theme-link">Consulter le catalogue complet →</a></p>
+    </div>
+  </div>
+</div>
+
+<div class="cta-band">
+  <div class="wrap">
+    <div>
+      <h2>Votre secteur a ses propres risques ?</h2>
+      <p>Nous auditons votre activité et construisons le programme qui y répond.</p>
+    </div>
+    <a href="contact.html" class="btn btn-solid">Demander un devis</a>
+  </div>
+</div>
+
+<footer></footer>
+
+<script src="js/formations-data.js"></script>
+<script src="js/common.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  function row(f) {
+    return `<a class="formation-row" href="formation.html?id=${f.id}">
+      <span class="f-code">${f.code}</span>
+      <span class="f-body">
+        <h3>${f.titre}</h3>
+        <span class="f-meta"><span>${f.duree}</span></span>
+      </span>
+      <span class="f-arrow">→</span>
+    </a>`;
+  }
+  document.getElementById('list-sante').innerHTML =
+    FORMATIONS.filter(f => f.theme === 'SAN').map(row).join('');
+  document.getElementById('list-resto').innerHTML =
+    FORMATIONS.filter(f => f.theme === 'HYG').map(row).join('');
+  const selection = ['sst', 'epi', 'exercices-evacuation', 'h0b0', 'duerp', 'gestion-conflits'];
+  document.getElementById('list-entreprises').innerHTML =
+    selection.map(id => FORMATIONS.find(f => f.id === id)).filter(Boolean).map(row).join('');
+});
+</script>
+</body>
+</html>

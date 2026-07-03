@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formation — Rescue Forma</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="formations">
+
+<header></header>
+
+<section class="detail-head">
+  <div class="wrap">
+    <div class="breadcrumb">
+      <a href="index.html">Accueil</a> / <a href="formations.html">Formations</a> / <span id="bc-theme"></span>
+    </div>
+    <span class="code-badge" id="f-code"></span>
+    <h1 id="f-titre"></h1>
+    <p class="d-sub" id="f-resume"></p>
+  </div>
+</section>
+
+<div class="wrap detail-grid">
+  <div class="detail-content">
+    <img id="f-image" class="detail-img" alt="" style="display:none;">
+    <h2>Objectifs pédagogiques</h2>
+    <ul id="f-objectifs"></ul>
+    <h2>Programme</h2>
+    <ul id="f-programme"></ul>
+    <h2>Méthodes pédagogiques et évaluation</h2>
+    <ul>
+      <li>Alternance d'apports théoriques et de mises en situation pratiques</li>
+      <li>Exercices construits à partir de situations réelles vécues par les formateurs</li>
+      <li>Matériel pédagogique professionnel fourni par Rescue Forma</li>
+      <li>Évaluation continue et évaluation des acquis en fin de formation</li>
+      <li>Remise d'une attestation de fin de formation conforme à la réglementation</li>
+    </ul>
+    <h2>Accessibilité</h2>
+    <ul>
+      <li>Formations accessibles aux personnes en situation de handicap : contactez notre référent handicap via <a href="mailto:contact@rescueforma.fr" style="color:var(--accent);">contact@rescueforma.fr</a> pour étudier les adaptations possibles</li>
+      <li>Délai d'accès : sessions planifiées sous 2 à 6 semaines selon disponibilités</li>
+    </ul>
+  </div>
+
+  <aside class="detail-aside">
+    <div class="aside-card">
+      <div class="aside-card-head">Informations pratiques</div>
+      <div class="aside-row"><span class="k">Durée</span><span class="v" id="f-duree"></span></div>
+      <div class="aside-row"><span class="k">Effectif</span><span class="v" id="f-effectif"></span></div>
+      <div class="aside-row"><span class="k">Prérequis</span><span class="v" id="f-prerequis"></span></div>
+      <div class="aside-row"><span class="k">Validation</span><span class="v" id="f-certif"></span></div>
+      <div class="aside-row"><span class="k">Financement</span><span class="v" id="f-financement"></span></div>
+      <div class="aside-row"><span class="k">Lieu</span><span class="v">Intra — sur votre site (PACA)</span></div>
+    </div>
+    <div class="aside-card">
+      <div class="aside-card-head">Public concerné</div>
+      <div style="padding:16px 22px;font-size:14px;color:var(--ink-soft);" id="f-public"></div>
+    </div>
+    <div class="aside-actions">
+      <a href="#" class="btn btn-solid" id="f-devis">Demander un devis</a>
+      <a href="#" class="btn-fiche" id="f-fiche" style="display:none;">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+        Télécharger la fiche programme (PDF)
+      </a>
+    </div>
+  </aside>
+</div>
+
+<div class="cta-band">
+  <div class="wrap">
+    <div>
+      <h2>Cette formation vous intéresse ?</h2>
+      <p>Devis gratuit sous 48 h ouvrées — programme adaptable à vos risques spécifiques.</p>
+    </div>
+    <a href="contact.html" class="btn btn-solid">Demander un devis</a>
+  </div>
+</div>
+
+<footer></footer>
+
+<script src="js/formations-data.js"></script>
+<script src="js/common.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const id = new URLSearchParams(location.search).get('id');
+  const f = FORMATIONS.find(x => x.id === id);
+  if (!f) { location.replace('formations.html'); return; }
+
+  document.title = f.titre + ' — Rescue Forma';
+  document.getElementById('bc-theme').textContent = THEMES[f.theme].nom;
+  document.getElementById('f-code').textContent = f.code + ' · ' + THEMES[f.theme].nom;
+  document.getElementById('f-titre').textContent = f.titre;
+  document.getElementById('f-resume').textContent = f.resume;
+  document.getElementById('f-duree').textContent = f.duree;
+  document.getElementById('f-effectif').textContent = f.effectif;
+  document.getElementById('f-prerequis').textContent = f.prerequis;
+  document.getElementById('f-certif').textContent = f.certif;
+  document.getElementById('f-financement').textContent = f.financement;
+  document.getElementById('f-public').textContent = f.public;
+
+  document.getElementById('f-objectifs').innerHTML = f.objectifs.map(o => `<li>${o}</li>`).join('');
+  document.getElementById('f-programme').innerHTML = f.programme.map(p => `<li>${p}</li>`).join('');
+
+  /* Image d'illustration si renseignée dans formations-data.js */
+  if (f.image) {
+    const img = document.getElementById('f-image');
+    img.src = 'assets/img/' + f.image;
+    img.alt = f.titre;
+    img.style.display = 'block';
+  }
+
+  /* Fiche programme PDF si renseignée dans formations-data.js */
+  if (f.fiche) {
+    const fiche = document.getElementById('f-fiche');
+    fiche.href = 'assets/fiches/' + f.fiche;
+    fiche.style.display = 'flex';
+  }
+
+  document.getElementById('f-devis').href =
+    'contact.html?formation=' + encodeURIComponent(f.titre);
+});
+</script>
+</body>
+</html>
