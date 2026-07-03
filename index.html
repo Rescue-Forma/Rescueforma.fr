@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Rescue Forma — Organisme de formation professionnelle spécialisé en prévention des risques, secourisme SST, incendie et sécurité. Zone PACA. NDA en cours, Qualiopi visé.">
+  <meta name="keywords" content="formation SST, secourisme, incendie, prévention risques, PACA, Marseille, PSC1, PSE, HACCP, MNS">
+  <title>Rescue Forma — Organisme de Formation Professionnelle PACA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ─── TOKENS ─────────────────────────────────────────── */
+    :root {
+      --marine:    #0D1B2A;
+      --marine2:   #112236;
+      --marine3:   #1A3A5C;
+      --bleu:      #2E86C1;
+      --bleu-clair:#5DADE2;
+      --blanc:     #FFFFFF;
+      --gris-txt:  #A8B8CC;
+      --gris-light:#D0DCE8;
+      --accent:    #5DADE2;
+      --danger:    #E74C3C;
+    }
+
+    /* ─── RESET ──────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--marine);
+      color: var(--blanc);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    img { max-width: 100%; display: block; }
+
+    /* ─── NAV ────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(13,27,42,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(46,134,193,0.2);
+      padding: 0 2rem;
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .nav-logo svg { width: 36px; height: 36px; }
+    .nav-brand { display: flex; flex-direction: column; line-height: 1; }
+    .nav-brand .rescue { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 800; color: var(--blanc); letter-spacing: 0.05em; }
+    .nav-brand .forma  { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 700; color: var(--bleu-clair); letter-spacing: 0.05em; }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { font-size: 13px; font-weight: 500; color: var(--gris-txt); letter-spacing: 0.03em; transition: color .2s; }
+    .nav-links a:hover { color: var(--blanc); }
+    .nav-cta {
+      background: var(--bleu);
+      color: var(--blanc) !important;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-size: 13px !important;
+      font-weight: 600 !important;
+      transition: background .2s !important;
+    }
+    .nav-cta:hover { background: var(--bleu-clair) !important; }
+    .nav-burger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+    .nav-burger span { display: block; width: 22px; height: 2px; background: var(--blanc); margin: 4px 0; transition: .3s; border-radius: 2px; }
+
+    /* ─── HERO ───────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 100px 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 70% 40%, rgba(46,134,193,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 10% 80%, rgba(93,173,226,0.06) 0%, transparent 60%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0; z-index: 0; opacity: 0.04;
+      background-image:
+        linear-gradient(rgba(93,173,226,.8) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(93,173,226,.8) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    .hero-inner {
+      position: relative; z-index: 1;
+      max-width: 1100px; margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1fr 420px; gap: 4rem; align-items: center;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--bleu-clair);
+      margin-bottom: 1.25rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 24px; height: 2px; background: var(--bleu-clair); border-radius: 1px;
+    }
+    .hero h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(42px, 6vw, 72px);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 em { font-style: normal; color: var(--bleu-clair); }
+    .hero-desc {
+      font-size: 17px; font-weight: 400; color: var(--gris-txt);
+      max-width: 520px; line-height: 1.7; margin-bottom: 2rem;
+    }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--bleu); color: var(--blanc);
+      padding: 14px 28px; border-radius: 8px;
+      font-size: 15px; font-weight: 600; border: none; cursor: pointer;
+      transition: background .2s, transform .15s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--bleu-clair); transform: translateY(-1px); }
+    .btn-outline {
+      border: 1.5px solid rgba(93,173,226,0.5); color: var(--bleu-clair);
+      padding: 13px 28px; border-radius: 8px;
+      font-size: 15px; font-weight: 600; cursor: pointer;
+      background: transparent;
+      transition: border-color .2s, background .2s;
+      display: inline-block;
+    }
+    .btn-outline:hover { border-color: var(--bleu-clair); background: rgba(93,173,226,0.08); }
+    .hero-stats {
+      display: flex; gap: 2rem; margin-top: 2.5rem;
+      padding-top: 2rem; border-top: 1px solid rgba(93,173,226,0.15);
+    }
+    .hero-stat .num { font-family: 'Barlow Condensed', sans-serif; font-size: 32px; font-weight: 800; color: var(--bleu-clair); }
+    .hero-stat .lbl { font-size: 12px; color: var(--gris-txt); margin-top: 2px; line-height: 1.4; }
+
+    /* Shield Hero */
+    .hero-visual { display: flex; justify-content: center; align-items: center; }
+    .shield-wrap {
+      position: relative; width: 320px; height: 380px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .shield-glow {
+      position: absolute; inset: -40px;
+      background: radial-gradient(circle, rgba(46,134,193,0.18) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: pulse 3s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.08); opacity: 0.6; }
+    }
+    .shield-svg { width: 220px; height: 260px; filter: drop-shadow(0 8px 32px rgba(46,134,193,0.4)); }
+    .shield-domains {
+      position: absolute; width: 100%; height: 100%;
+    }
+    .domain-badge {
+      position: absolute;
+      background: rgba(17,34,54,0.9);
+      border: 1px solid rgba(46,134,193,0.3);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 11px; font-weight: 600; color: var(--bleu-clair);
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      backdrop-filter: blur(8px);
+    }
+    .domain-badge:nth-child(1) { top: 10%; right: -10%; }
+    .domain-badge:nth-child(2) { top: 35%; right: -15%; }
+    .domain-badge:nth-child(3) { bottom: 30%; right: -8%; }
+    .domain-badge:nth-child(4) { top: 25%; left: -12%; }
+    .domain-badge:nth-child(5) { bottom: 18%; left: -8%; }
+
+    /* ─── CERTIF BAND ────────────────────────────────────── */
+    .certif-band {
+      border-top: 1px solid rgba(46,134,193,0.15);
+      border-bottom: 1px solid rgba(46,134,193,0.15);
+      padding: 1.25rem 2rem;
+      background: rgba(17,34,54,0.5);
+    }
+    .certif-band-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; gap: 2.5rem; flex-wrap: wrap;
+    }
+    .certif-label { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gris-txt); white-space: nowrap; }
+    .certif-items { display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center; }
+    .certif-item {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 500; color: var(--gris-light);
+    }
+    .certif-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--bleu-clair); flex-shrink: 0; }
+    .certif-dot.pending { background: #F39C12; }
+
+    /* ─── SECTIONS COMMUNES ──────────────────────────────── */
+    section { padding: 5rem 2rem; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-eyebrow {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--bleu-clair); margin-bottom: 0.75rem;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .section-eyebrow::before { content: ''; display: block; width: 20px; height: 2px; background: var(--bleu-clair); border-radius: 1px; }
+    .section-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(30px, 4vw, 44px); font-weight: 800;
+      line-height: 1.1; margin-bottom: 1rem;
+    }
+    .section-sub { font-size: 16px; color: var(--gris-txt); max-width: 560px; line-height: 1.7; margin-bottom: 3rem; }
+
+    /* ─── FORMATIONS ─────────────────────────────────────── */
+    .formations-bg { background: var(--marine); }
+    .formations-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+    }
+    .formation-card {
+      background: var(--marine2);
+      border: 1px solid rgba(46,134,193,0.15);
+      border-radius: 12px;
+      padding: 1.75rem;
+      transition: border-color .25s, transform .2s;
+      position: relative; overflow: hidden;
+    }
+    .formation-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--bleu), var(--bleu-clair));
+      opacity: 0; transition: opacity .25s;
+    }
+    .formation-card:hover { border-color: rgba(46,134,193,0.4); transform: translateY(-3px); }
+    .formation-card:hover::before { opacity: 1; }
+    .card-icon {
+      width: 48px; height: 48px; border-radius: 10px;
+      background: rgba(46,134,193,0.12);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+    .card-icon svg { width: 24px; height: 24px; }
+    .card-cat { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bleu-clair); margin-bottom: 0.5rem; }
+    .card-title { font-size: 17px; font-weight: 700; margin-bottom: 0.75rem; line-height: 1.3; }
+    .card-desc { font-size: 13px; color: var(--gris-txt); line-height: 1.6; margin-bottom: 1.25rem; }
+    .card-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .tag {
+      font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 20px;
+      background: rgba(46,134,193,0.1); color: var(--bleu-clair);
+      border: 1px solid rgba(46,134,193,0.2);
+    }
+    .card-footer {
+      margin-top: 1.25rem; padding-top: 1.25rem;
+      border-top: 1px solid rgba(93,173,226,0.1);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .card-opco { font-size: 11px; color: var(--gris-txt); }
+    .card-link { font-size: 12px; font-weight: 600; color: var(--bleu-clair); }
+
+    /* ─── POURQUOI ───────────────────────────────────────── */
+    .pourquoi { background: rgba(17,34,54,0.4); }
+    .pourquoi-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    }
+    .pourquoi-content { order: 1; }
+    .pourquoi-features { order: 2; display: flex; flex-direction: column; gap: 1.25rem; }
+    .feature-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+      padding: 1.25rem;
+      background: var(--marine2);
+      border: 1px solid rgba(46,134,193,0.12);
+      border-radius: 10px;
+    }
+    .feature-icon {
+      width: 40px; height: 40px; flex-shrink: 0; border-radius: 8px;
+      background: rgba(46,134,193,0.15);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .feature-icon svg { width: 20px; height: 20px; }
+    .feature-text h4 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+    .feature-text p { font-size: 13px; color: var(--gris-txt); line-height: 1.5; }
+
+    .profile-card {
+      background: var(--marine2);
+      border: 1px solid rgba(46,134,193,0.2);
+      border-radius: 14px; padding: 2rem;
+    }
+    .profile-header { display: flex; gap: 1rem; align-items: center; margin-bottom: 1.5rem; }
+    .profile-avatar {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--bleu), var(--bleu-clair));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 800; color: var(--blanc);
+      flex-shrink: 0;
+    }
+    .profile-info h3 { font-size: 16px; font-weight: 700; }
+    .profile-info p { font-size: 12px; color: var(--bleu-clair); margin-top: 2px; }
+    .profile-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.25rem; }
+    .profile-badge {
+      font-size: 11px; font-weight: 500; padding: 5px 10px; border-radius: 5px;
+      background: rgba(46,134,193,0.1); color: var(--gris-light);
+      border: 1px solid rgba(46,134,193,0.2);
+    }
+    .profile-quote {
+      font-size: 14px; color: var(--gris-txt); line-height: 1.65;
+      border-left: 2px solid var(--bleu); padding-left: 1rem; font-style: italic;
+    }
+
+    /* ─── FINANCEMENT ────────────────────────────────────── */
+    .financement { background: var(--marine); }
+    .financement-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .fin-card {
+      background: var(--marine2);
+      border: 1px solid rgba(46,134,193,0.12);
+      border-radius: 10px; padding: 1.5rem;
+    }
+    .fin-icon { font-size: 28px; margin-bottom: 0.75rem; }
+    .fin-title { font-size: 15px; font-weight: 700; margin-bottom: 0.5rem; }
+    .fin-desc { font-size: 13px; color: var(--gris-txt); line-height: 1.6; }
+
+    /* ─── ZONE INTERVENTION ──────────────────────────────── */
+    .zone { background: rgba(17,34,54,0.4); }
+    .zone-inner-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+    .zone-map {
+      background: var(--marine2); border: 1px solid rgba(46,134,193,0.15);
+      border-radius: 14px; padding: 2rem; text-align: center; min-height: 240px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem;
+    }
+    .zone-map svg { width: 100px; height: 120px; opacity: 0.7; }
+    .zone-map h3 { font-size: 18px; font-weight: 700; }
+    .zone-map p { font-size: 13px; color: var(--gris-txt); }
+    .zone-list { display: flex; flex-direction: column; gap: 0.75rem; }
+    .zone-item {
+      display: flex; gap: 10px; align-items: center;
+      padding: 0.75rem 1rem;
+      background: var(--marine2); border: 1px solid rgba(46,134,193,0.1); border-radius: 8px;
+    }
+    .zone-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--bleu-clair); flex-shrink: 0; }
+    .zone-item span { font-size: 14px; color: var(--gris-light); }
+
+    /* ─── CONTACT ────────────────────────────────────────── */
+    .contact { background: var(--marine); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .contact-info { display: flex; flex-direction: column; gap: 1.25rem; }
+    .contact-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+      padding: 1.25rem; background: var(--marine2);
+      border: 1px solid rgba(46,134,193,0.12); border-radius: 10px;
+    }
+    .contact-item svg { width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px; }
+    .contact-item h4 { font-size: 13px; font-weight: 700; margin-bottom: 3px; }
+    .contact-item p { font-size: 13px; color: var(--gris-txt); }
+    .contact-item a { color: var(--bleu-clair); }
+
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label { font-size: 12px; font-weight: 600; color: var(--gris-txt); letter-spacing: 0.04em; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: var(--marine2);
+      border: 1px solid rgba(46,134,193,0.2);
+      border-radius: 8px;
+      padding: 11px 14px;
+      font-size: 14px; color: var(--blanc);
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color .2s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--bleu-clair); }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(168,184,204,0.5); }
+    .form-group select option { background: var(--marine2); }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-submit {
+      background: var(--bleu); color: var(--blanc);
+      padding: 13px 28px; border-radius: 8px; border: none;
+      font-size: 15px; font-weight: 600; cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: background .2s;
+    }
+    .form-submit:hover { background: var(--bleu-clair); }
+
+    /* ─── FOOTER ─────────────────────────────────────────── */
+    footer {
+      background: var(--marine2);
+      border-top: 1px solid rgba(46,134,193,0.15);
+      padding: 2.5rem 2rem;
+    }
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-left { display: flex; flex-direction: column; gap: 4px; }
+    .footer-brand { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+    .footer-brand .rescue { font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 800; }
+    .footer-brand .forma  { font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 700; color: var(--bleu-clair); }
+    .footer-siren { font-size: 12px; color: var(--gris-txt); }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: 12px; color: var(--gris-txt); transition: color .2s; }
+    .footer-links a:hover { color: var(--blanc); }
+    .footer-right { font-size: 12px; color: var(--gris-txt); text-align: right; }
+
+    /* ─── MOBILE ─────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .formations-grid { grid-template-columns: 1fr; }
+      .pourquoi-grid { grid-template-columns: 1fr; }
+      .pourquoi-content { order: 2; }
+      .pourquoi-features { order: 1; }
+      .financement-grid { grid-template-columns: 1fr; }
+      .zone-inner-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .nav-burger { display: block; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: fixed; top: 64px; left: 0; right: 0;
+        background: var(--marine2);
+        padding: 1.5rem 2rem; gap: 1rem;
+        border-bottom: 1px solid rgba(46,134,193,0.15);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ════════════════════════════════════════════════ -->
+<nav>
+  <div class="nav-logo">
+    <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M18 3L5 10v8c0 7 5.7 13.5 13 15 7.3-1.5 13-8 13-15v-8L18 3z" fill="rgba(46,134,193,0.15)" stroke="#2E86C1" stroke-width="1.5"/>
+      <path d="M18 8l-4 7h3l-1 6 6-8h-3l1-5z" fill="#5DADE2"/>
+    </svg>
+    <div class="nav-brand">
+      <span class="rescue">RESCUE</span>
+      <span class="forma">FORMA</span>
+    </div>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#formations">Formations</a></li>
+    <li><a href="#pourquoi">Notre expertise</a></li>
+    <li><a href="#financement">Financement</a></li>
+    <li><a href="#zone">Zone PACA</a></li>
+    <li><a href="#contact" class="nav-cta">Demander un devis</a></li>
+  </ul>
+  <button class="nav-burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ═══ HERO ════════════════════════════════════════════════ -->
+<section class="hero" id="accueil">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-eyebrow">Organisme de formation professionnelle · PACA</div>
+      <h1>Prévenir,<br><em>protéger,</em><br>former.</h1>
+      <p class="hero-desc">
+        Secourisme, incendie, prévention des risques professionnels et sécurité des personnes. Des formations terrain, dispensées par des professionnels issus des métiers de la sécurité civile et du secours.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Demander un devis</a>
+        <a href="#formations" class="btn-outline">Voir le catalogue</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="num">4</div>
+          <div class="lbl">Domaines<br>de formation</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">13</div>
+          <div class="lbl">Formations<br>au catalogue</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">PACA</div>
+          <div class="lbl">Zone<br>d'intervention</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="shield-wrap">
+        <div class="shield-glow"></div>
+        <svg class="shield-svg" viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="shieldGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#2E86C1"/>
+              <stop offset="100%" stop-color="#1A3A5C"/>
+            </linearGradient>
+          </defs>
+          <path d="M100 8L12 48v60c0 54 38 100 88 116 50-16 88-62 88-116V48L100 8z" fill="url(#shieldGrad)" stroke="#5DADE2" stroke-width="2"/>
+          <path d="M100 30l-6 10h4l-2 8 10-14h-4l2-4z" fill="none" stroke="rgba(93,173,226,0.3)" stroke-width="1"/>
+          <path d="M100 55l-18 32h13l-5 28 30-44h-14l5-16z" fill="white" fill-opacity="0.95"/>
+          <path d="M100 55l-18 32h13l-5 28 30-44h-14l5-16z" stroke="#5DADE2" stroke-width="1" fill="none"/>
+        </svg>
+        <div class="shield-domains">
+          <span class="domain-badge">SST · PSC1</span>
+          <span class="domain-badge">PSE 1 & 2</span>
+          <span class="domain-badge">Incendie</span>
+          <span class="domain-badge">HACCP</span>
+          <span class="domain-badge">MNS</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CERTIF BAND ════════════════════════════════════════ -->
+<div class="certif-band">
+  <div class="certif-band-inner">
+    <span class="certif-label">Accréditations</span>
+    <div class="certif-items">
+      <div class="certif-item"><span class="certif-dot pending"></span> NDA en cours d'obtention</div>
+      <div class="certif-item"><span class="certif-dot pending"></span> Certification Qualiopi (visée)</div>
+      <div class="certif-item"><span class="certif-dot pending"></span> Habilitation INRS (visée)</div>
+      <div class="certif-item"><span class="certif-dot pending"></span> DRAAF / ROFHYA (visée)</div>
+      <div class="certif-item"><span class="certif-dot"></span> Financement OPCO éligible</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FORMATIONS ══════════════════════════════════════════ -->
+<section class="formations-bg" id="formations">
+  <div class="section-inner">
+    <div class="section-eyebrow">Catalogue de formations</div>
+    <h2 class="section-title">Nos domaines d'intervention</h2>
+    <p class="section-sub">Des formations intra et inter-entreprises adaptées à vos obligations réglementaires et à vos effectifs.</p>
+    <div class="formations-grid">
+
+      <!-- Secourisme -->
+      <div class="formation-card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#5DADE2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+          </svg>
+        </div>
+        <div class="card-cat">Secourisme</div>
+        <div class="card-title">Sauveteur Secouriste du Travail</div>
+        <div class="card-desc">Formation SST initiale et recyclage. Gestes de premiers secours en milieu professionnel. Habilitation INRS visée.</div>
+        <div class="card-tags">
+          <span class="tag">SST Initiale — 14h</span>
+          <span class="tag">Recyclage — 7h</span>
+          <span class="tag">PSC1</span>
+          <span class="tag">PSE 1 & 2</span>
+        </div>
+        <div class="card-footer">
+          <span class="card-opco">Finançable OPCO · CPF</span>
+          <a href="#contact" class="card-link">Devis →</a>
+        </div>
+      </div>
+
+      <!-- Incendie -->
+      <div class="formation-card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#5DADE2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/>
+            <path d="M12 8v4l3 3"/>
+          </svg>
+        </div>
+        <div class="card-cat">Incendie & Évacuation</div>
+        <div class="card-title">Sécurité incendie & évacuation</div>
+        <div class="card-desc">Manipulation d'extincteurs sur feu réel, procédures d'évacuation, rôles EPI/ESI, lecture SSI, utilisation RIA.</div>
+        <div class="card-tags">
+          <span class="tag">Extincteurs</span>
+          <span class="tag">EPI · ESI</span>
+          <span class="tag">SSI · RIA</span>
+          <span class="tag">Évacuation</span>
+        </div>
+        <div class="card-footer">
+          <span class="card-opco">Finançable OPCO · Plan de formation</span>
+          <a href="#contact" class="card-link">Devis →</a>
+        </div>
+      </div>
+
+      <!-- Prévention risques -->
+      <div class="formation-card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#5DADE2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <div class="card-cat">Prévention des risques</div>
+        <div class="card-title">Risques professionnels & DUERP</div>
+        <div class="card-desc">Gestes et postures, prévention TMS, risque routier professionnel, RPS, élaboration et mise à jour du DUERP.</div>
+        <div class="card-tags">
+          <span class="tag">Gestes & postures</span>
+          <span class="tag">TMS</span>
+          <span class="tag">Risque routier</span>
+          <span class="tag">RPS · DUERP</span>
+        </div>
+        <div class="card-footer">
+          <span class="card-opco">Finançable OPCO · Plan de formation</span>
+          <a href="#contact" class="card-link">Devis →</a>
+        </div>
+      </div>
+
+      <!-- HACCP -->
+      <div class="formation-card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#5DADE2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 12l2 2 4-4M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"/>
+          </svg>
+        </div>
+        <div class="card-cat">Hygiène alimentaire</div>
+        <div class="card-title">HACCP — Hygiène & sécurité alimentaire</div>
+        <div class="card-desc">Formation obligatoire pour les établissements de restauration commerciale. Analyse des dangers et maîtrise des points critiques.</div>
+        <div class="card-tags">
+          <span class="tag">HACCP — 14h</span>
+          <span class="tag">Restauration commerciale</span>
+          <span class="tag">Obligation légale</span>
+        </div>
+        <div class="card-footer">
+          <span class="card-opco">Finançable OPCO · DRAAF</span>
+          <a href="#contact" class="card-link">Devis →</a>
+        </div>
+      </div>
+
+      <!-- MNS -->
+      <div class="formation-card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#5DADE2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+        </div>
+        <div class="card-cat">Surveillance aquatique</div>
+        <div class="card-title">Sécurité aquatique & MNS</div>
+        <div class="card-desc">Formations à la sécurité en milieu aquatique, gestes de sauvetage, réglementation ROFHYA/DRAAF pour piscines et plans d'eau.</div>
+        <div class="card-tags">
+          <span class="tag">Sauvetage aquatique</span>
+          <span class="tag">ROFHYA</span>
+          <span class="tag">Piscines · ERP</span>
+        </div>
+        <div class="card-footer">
+          <span class="card-opco">Habilitation DRAAF visée</span>
+          <a href="#contact" class="card-link">Devis →</a>
+        </div>
+      </div>
+
+      <!-- Sur mesure -->
+      <div class="formation-card" style="border: 1px dashed rgba(93,173,226,0.3); background: rgba(46,134,193,0.04);">
+        <div class="card-icon" style="background: rgba(93,173,226,0.08);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#5DADE2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/>
+          </svg>
+        </div>
+        <div class="card-cat">Sur mesure</div>
+        <div class="card-title">Formation intra-entreprise personnalisée</div>
+        <div class="card-desc">Audit de vos besoins, ingénierie pédagogique adaptée à votre secteur, vos effectifs et vos obligations réglementaires.</div>
+        <div class="card-tags">
+          <span class="tag">Intra-entreprise</span>
+          <span class="tag">Sur site client</span>
+          <span class="tag">Devis gratuit</span>
+        </div>
+        <div class="card-footer">
+          <span class="card-opco">Tous financements</span>
+          <a href="#contact" class="card-link">Nous contacter →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ POURQUOI ════════════════════════════════════════════ -->
+<section class="pourquoi" id="pourquoi">
+  <div class="section-inner">
+    <div class="pourquoi-grid">
+      <div class="pourquoi-content">
+        <div class="section-eyebrow">Notre expertise</div>
+        <h2 class="section-title">Des formateurs issus du terrain</h2>
+        <p class="section-sub">Rescue Forma est fondée par des professionnels de la sécurité civile, du secours et de la formation. Une pédagogie ancrée dans la réalité opérationnelle.</p>
+        <div class="profile-card">
+          <div class="profile-header">
+            <div class="profile-avatar">DD</div>
+            <div class="profile-info">
+              <h3>Dan Djebali</h3>
+              <p>Co-fondateur & Directeur Général</p>
+            </div>
+          </div>
+          <div class="profile-badges">
+            <span class="profile-badge">Formateur SST / INRS</span>
+            <span class="profile-badge">PSC1 · PSE 1&2</span>
+            <span class="profile-badge">MNS</span>
+            <span class="profile-badge">Incendie</span>
+            <span class="profile-badge">Titre FPA</span>
+            <span class="profile-badge">Pompier volontaire (5 ans)</span>
+            <span class="profile-badge">Police Nationale</span>
+          </div>
+          <p class="profile-quote">
+            "Former à la prévention, c'est agir avant l'accident. Notre approche terrain fait la différence entre un geste appris et un geste maîtrisé."
+          </p>
+        </div>
+      </div>
+      <div class="pourquoi-features">
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#5DADE2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <div class="feature-text">
+            <h4>Formateurs professionnels certifiés</h4>
+            <p>Titulaires du FPA, habilitations INRS, issus de la sécurité civile et des métiers du secours.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#5DADE2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <div class="feature-text">
+            <h4>Formations intra et inter-entreprises</h4>
+            <p>Interventions sur site client dans toute la région PACA. Groupes de 4 à 12 stagiaires.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#5DADE2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+            </svg>
+          </div>
+          <div class="feature-text">
+            <h4>Conformité réglementaire garantie</h4>
+            <p>Programmes conformes Code du travail, INRS, réglementation ERP et obligations de formation.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#5DADE2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+          </div>
+          <div class="feature-text">
+            <h4>Certification Qualiopi en cours</h4>
+            <p>Démarche qualité engagée dès la création. Financement OPCO et CPF accessible.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FINANCEMENT ═════════════════════════════════════════ -->
+<section class="financement" id="financement">
+  <div class="section-inner">
+    <div class="section-eyebrow">Financement</div>
+    <h2 class="section-title">Vos formations prises en charge</h2>
+    <p class="section-sub">L'ensemble de nos formations est éligible aux dispositifs de financement de la formation professionnelle.</p>
+    <div class="financement-grid">
+      <div class="fin-card">
+        <div class="fin-icon">🏢</div>
+        <div class="fin-title">OPCO</div>
+        <div class="fin-desc">Prise en charge via votre Opérateur de Compétences selon votre branche professionnelle. Nous vous accompagnons dans la constitution du dossier.</div>
+      </div>
+      <div class="fin-card">
+        <div class="fin-icon">📋</div>
+        <div class="fin-title">Plan de développement des compétences</div>
+        <div class="fin-desc">Intégration de nos formations dans votre plan de formation annuel. Devis et conventions de formation fournis.</div>
+      </div>
+      <div class="fin-card">
+        <div class="fin-icon">💼</div>
+        <div class="fin-title">CPF & Financement direct</div>
+        <div class="fin-desc">Certaines formations éligibles CPF. Financement employeur direct avec facturation et attestations conformes.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ZONE ════════════════════════════════════════════════ -->
+<section class="zone" id="zone">
+  <div class="section-inner">
+    <div class="zone-inner-grid">
+      <div>
+        <div class="section-eyebrow">Zone d'intervention</div>
+        <h2 class="section-title">Région PACA</h2>
+        <p class="section-sub">Interventions sur site client dans toute la région. Déplacements inclus dans les devis selon la localisation.</p>
+        <div class="zone-list">
+          <div class="zone-item"><span class="zone-dot"></span><span>Bouches-du-Rhône (13) — secteur principal</span></div>
+          <div class="zone-item"><span class="zone-dot"></span><span>Var (83)</span></div>
+          <div class="zone-item"><span class="zone-dot"></span><span>Vaucluse (84)</span></div>
+          <div class="zone-item"><span class="zone-dot"></span><span>Alpes-Maritimes (06)</span></div>
+          <div class="zone-item"><span class="zone-dot"></span><span>Alpes-de-Haute-Provence (04)</span></div>
+          <div class="zone-item"><span class="zone-dot"></span><span>Hautes-Alpes (05)</span></div>
+        </div>
+      </div>
+      <div class="zone-map">
+        <svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 20 L80 15 L90 50 L75 80 L60 110 L40 105 L15 75 L10 45 Z" fill="rgba(46,134,193,0.15)" stroke="#2E86C1" stroke-width="1.5"/>
+          <circle cx="45" cy="65" r="5" fill="#5DADE2" opacity="0.8"/>
+          <circle cx="55" cy="75" r="3" fill="#5DADE2" opacity="0.5"/>
+          <circle cx="35" cy="55" r="3" fill="#5DADE2" opacity="0.5"/>
+          <circle cx="65" cy="60" r="3" fill="#5DADE2" opacity="0.5"/>
+          <circle cx="50" cy="45" r="3" fill="#5DADE2" opacity="0.5"/>
+          <circle cx="40" cy="80" r="3" fill="#5DADE2" opacity="0.5"/>
+        </svg>
+        <h3>Marseille & PACA</h3>
+        <p>6 départements couverts</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═════════════════════════════════════════════ -->
+<section class="contact" id="contact">
+  <div class="section-inner">
+    <div class="section-eyebrow">Contact & Devis</div>
+    <h2 class="section-title">Demander un devis</h2>
+    <p class="section-sub">Réponse sous 48h ouvrées. Devis gratuit et sans engagement.</p>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#5DADE2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+          <div>
+            <h4>Email</h4>
+            <p><a href="mailto:contact@rescueforma.fr">contact@rescueforma.fr</a></p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#5DADE2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+          </svg>
+          <div>
+            <h4>Zone d'intervention</h4>
+            <p>Région PACA — Interventions sur site client</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#5DADE2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+          </svg>
+          <div>
+            <h4>Forme juridique</h4>
+            <p>Rescue Forma SAS — Immatriculation en cours</p>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Prénom et nom</label>
+            <input type="text" placeholder="Jean Dupont">
+          </div>
+          <div class="form-group">
+            <label>Entreprise / Structure</label>
+            <input type="text" placeholder="Nom de l'entreprise">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="vous@entreprise.fr">
+          </div>
+          <div class="form-group">
+            <label>Téléphone</label>
+            <input type="tel" placeholder="06 00 00 00 00">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Formation souhaitée</label>
+          <select>
+            <option value="">Sélectionner une formation</option>
+            <option>SST — Sauveteur Secouriste du Travail</option>
+            <option>PSC1 — Premiers Secours Civiques</option>
+            <option>PSE 1 & 2</option>
+            <option>Incendie — Manipulation extincteurs</option>
+            <option>Évacuation — EPI / ESI / SSI / RIA</option>
+            <option>Prévention des risques — Gestes & postures / TMS</option>
+            <option>Risque routier professionnel / RPS</option>
+            <option>HACCP — Hygiène alimentaire</option>
+            <option>Sécurité aquatique / MNS</option>
+            <option>DUERP — Document Unique</option>
+            <option>Formation sur mesure</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nombre de stagiaires</label>
+            <input type="number" placeholder="Ex. 12" min="1">
+          </div>
+          <div class="form-group">
+            <label>Département</label>
+            <select>
+              <option value="">Département</option>
+              <option>13 — Bouches-du-Rhône</option>
+              <option>83 — Var</option>
+              <option>84 — Vaucluse</option>
+              <option>06 — Alpes-Maritimes</option>
+              <option>04 — Alpes-de-Haute-Provence</option>
+              <option>05 — Hautes-Alpes</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Message (optionnel)</label>
+          <textarea placeholder="Précisez vos besoins, contraintes de dates, contexte particulier…"></textarea>
+        </div>
+        <button class="form-submit" type="button">Envoyer la demande de devis</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ══════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-left">
+      <div class="footer-brand">
+        <span class="rescue">RESCUE</span>
+        <span class="forma">FORMA</span>
+      </div>
+      <span class="footer-siren">SAS en cours d'immatriculation · Organisme de formation professionnelle · Zone PACA</span>
+    </div>
+    <div class="footer-links">
+      <a href="#formations">Formations</a>
+      <a href="#financement">Financement</a>
+      <a href="#contact">Contact</a>
+      <a href="mailto:contact@rescueforma.fr">contact@rescueforma.fr</a>
+    </div>
+    <div class="footer-right">
+      <p>© 2025 Rescue Forma SAS</p>
+      <p style="margin-top:4px;">Mentions légales · CGV</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+</script>
+</body>
+</html>
