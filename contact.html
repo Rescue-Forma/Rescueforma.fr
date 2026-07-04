@@ -9,6 +9,20 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <style>
+    .form-success {
+      display: none; text-align: center; padding: 40px 24px;
+      border: 1px solid var(--line); border-radius: 6px;
+      background: var(--bg-alt);
+    }
+    .form-success h3 { font-family: var(--serif); font-size: 22px; margin-bottom: 10px; }
+    .form-success p { color: var(--ink-soft); font-size: 15px; }
+    .form-error {
+      display: none; padding: 12px 16px; border-radius: 4px;
+      background: #FEF2F2; border: 1px solid #FECACA;
+      color: #B91C1C; font-size: 14px; margin-bottom: 16px;
+    }
+  </style>
 </head>
 <body data-page="contact">
 
@@ -43,34 +57,39 @@
   </div>
 
   <div>
+    <div class="form-error" id="formError">Une erreur est survenue. Merci de réessayer ou de nous contacter directement à contact@rescueforma.fr</div>
+    <div class="form-success" id="formSuccess">
+      <h3>Demande envoyée</h3>
+      <p>Nous avons bien reçu votre demande de devis et vous répondrons sous 48 h ouvrées à l'adresse indiquée.</p>
+    </div>
     <form id="devisForm" class="form-grid">
       <div class="fg">
         <label for="nom">Prénom et nom</label>
-        <input type="text" id="nom" required placeholder="Jean Dupont">
+        <input type="text" id="nom" name="nom" required placeholder="Jean Dupont">
       </div>
       <div class="fg">
         <label for="societe">Entreprise / structure</label>
-        <input type="text" id="societe" required placeholder="Nom de la structure">
+        <input type="text" id="societe" name="societe" required placeholder="Nom de la structure">
       </div>
       <div class="fg">
         <label for="email">Email</label>
-        <input type="email" id="email" required placeholder="vous@entreprise.fr">
+        <input type="email" id="email" name="email" required placeholder="vous@entreprise.fr">
       </div>
       <div class="fg">
         <label for="tel">Téléphone</label>
-        <input type="tel" id="tel" placeholder="06 00 00 00 00">
+        <input type="tel" id="tel" name="tel" placeholder="06 00 00 00 00">
       </div>
       <div class="fg full">
         <label for="formation">Formation souhaitée</label>
-        <select id="formation"></select>
+        <select id="formation" name="formation"></select>
       </div>
       <div class="fg">
         <label for="effectif">Nombre de stagiaires</label>
-        <input type="number" id="effectif" min="1" placeholder="Ex. 10">
+        <input type="number" id="effectif" name="effectif" min="1" placeholder="Ex. 10">
       </div>
       <div class="fg">
         <label for="dept">Département</label>
-        <select id="dept">
+        <select id="dept" name="departement">
           <option value="">Sélectionner</option>
           <option>13 — Bouches-du-Rhône</option>
           <option>83 — Var</option>
@@ -83,11 +102,11 @@
       </div>
       <div class="fg full">
         <label for="message">Votre besoin</label>
-        <textarea id="message" placeholder="Contexte, contraintes de dates, risques particuliers de votre activité…"></textarea>
+        <textarea id="message" name="message" placeholder="Contexte, contraintes de dates, risques particuliers de votre activité…"></textarea>
       </div>
       <div class="fg full">
-        <button type="submit" class="btn btn-solid" style="width:100%;">Envoyer la demande de devis</button>
-        <p style="font-size:12.5px;color:var(--ink-muted);margin-top:10px;">L'envoi ouvre votre messagerie avec la demande pré-remplie à destination de contact@rescueforma.fr. Vos données ne sont utilisées que pour le traitement de votre demande.</p>
+        <button type="submit" id="submitBtn" class="btn btn-solid" style="width:100%;">Envoyer la demande de devis</button>
+        <p style="font-size:12.5px;color:var(--ink-muted);margin-top:10px;">Vos données sont utilisées uniquement pour le traitement de votre demande de devis et ne sont pas transmises à des tiers.</p>
       </div>
     </form>
   </div>
@@ -99,7 +118,7 @@
 <script src="common.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  /* Remplissage du select formations depuis la base */
+  /* Remplissage du select formations */
   const sel = document.getElementById('formation');
   sel.innerHTML = '<option value="">Sélectionner une formation</option>';
   Object.entries(THEMES).forEach(([key, t]) => {
@@ -122,28 +141,36 @@ document.addEventListener('DOMContentLoaded', () => {
   const pre = new URLSearchParams(location.search).get('formation');
   if (pre) sel.value = pre;
 
-  /* Envoi par mailto vers contact@rescueforma.fr */
-  document.getElementById('devisForm').addEventListener('submit', e => {
+  /* Envoi Formspree */
+  const form = document.getElementById('devisForm');
+  const btnSubmit = document.getElementById('submitBtn');
+  const successDiv = document.getElementById('formSuccess');
+  const errorDiv = document.getElementById('formError');
+
+  form.addEventListener('submit', async e => {
     e.preventDefault();
-    const v = id => document.getElementById(id).value.trim();
-    const sujet = 'Demande de devis — ' + (v('formation') || 'formation');
-    const corps =
-`Demande de devis via rescueforma.fr
+    btnSubmit.textContent = 'Envoi en cours…';
+    btnSubmit.disabled = true;
+    errorDiv.style.display = 'none';
 
-Nom : ${v('nom')}
-Structure : ${v('societe')}
-Email : ${v('email')}
-Téléphone : ${v('tel') || '—'}
-
-Formation souhaitée : ${v('formation') || '—'}
-Nombre de stagiaires : ${v('effectif') || '—'}
-Département : ${v('dept') || '—'}
-
-Besoin :
-${v('message') || '—'}`;
-    location.href = 'mailto:contact@rescueforma.fr'
-      + '?subject=' + encodeURIComponent(sujet)
-      + '&body=' + encodeURIComponent(corps);
+    try {
+      const data = new FormData(form);
+      const res = await fetch('https://formspree.io/f/xdarypee', {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        successDiv.style.display = 'block';
+      } else {
+        throw new Error('Erreur serveur');
+      }
+    } catch (err) {
+      errorDiv.style.display = 'block';
+      btnSubmit.textContent = 'Envoyer la demande de devis';
+      btnSubmit.disabled = false;
+    }
   });
 });
 </script>
