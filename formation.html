@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body data-page="formations">
 
@@ -82,8 +82,8 @@
 
 <footer></footer>
 
-<script src="js/formations-data.js"></script>
-<script src="js/common.js"></script>
+<script src="formations-data.js"></script>
+<script src="common.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const id = new URLSearchParams(location.search).get('id');
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /* Image d'illustration si renseignée dans formations-data.js */
   if (f.image) {
     const img = document.getElementById('f-image');
-    img.src = 'assets/img/' + f.image;
+    img.src = 'img/' + f.image;
     img.alt = f.titre;
     img.style.display = 'block';
   }
@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /* Fiche programme PDF si renseignée dans formations-data.js */
   if (f.fiche) {
     const fiche = document.getElementById('f-fiche');
-    fiche.href = 'assets/fiches/' + f.fiche;
+    fiche.href = 'fiches/' + f.fiche;
     fiche.style.display = 'flex';
   }
 
