@@ -768,6 +768,7 @@ const FORMATIONS = [
     "Pistes de prévention : technique, organisation, formation",
     "Échauffements et réveil musculaire en entreprise"
   ],
+  support: "incendie-tms-sante.html",
   fiche: "", image: ""
 },
 {
@@ -1210,6 +1211,7 @@ const FORMATIONS = [
     "Exercice de transfert de résidents avec matériel de l'établissement",
     "Lecture du SSI et levée de doute"
   ],
+  support: "incendie-tms-sante.html",
   fiche: "", image: ""
 },
 {

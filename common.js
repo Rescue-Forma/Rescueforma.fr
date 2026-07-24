@@ -25,7 +25,7 @@ const HEADER_HTML = `
       <a href="index.html" data-page="index">Accueil</a>
       <a href="formations.html" data-page="formations">Formations</a>
       <a href="secteurs.html" data-page="secteurs">Secteurs d'expertise</a>
-      <a href="index.html#formateurs" data-page="">Nos formateurs</a>
+      <a href="supports.html" data-page="supports">Supports stagiaires</a>
       <a href="contact.html" class="nav-devis" data-page="contact">Demander un devis</a>
     </nav>
     <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -58,17 +58,18 @@ const FOOTER_HTML = `
       </ul>
     </div>
     <div>
-      <h5>Contact</h5>
+      <h5>Contact &amp; ressources</h5>
       <ul>
         <li><a href="mailto:contact@rescueforma.fr">contact@rescueforma.fr</a></li>
         <li><a href="contact.html">Demander un devis</a></li>
+        <li><a href="supports.html">Supports stagiaires</a></li>
         <li><a href="#">Région PACA</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
     <span>&copy; 2026 Rescue Forma SAS &mdash; Organisme de formation professionnelle &middot; SAS en cours d'immatriculation</span>
-    <span>NDA en cours &middot; Certification Qualiopi vis&eacute;e &middot; Habilitation INRS vis&eacute;e</span>
+    <span>NDA en cours &middot; Certification Qualiopi visée &middot; Habilitation INRS visée</span>
   </div>
 </div>`;
 
